@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ProtoPilot Team</title>
+  <style>
+    body { font-family: "Segoe UI", Tahoma, sans-serif; background: #f4f7fb; color: #1b1f24; margin: 0; }
+    .wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+    .card { background: #fff; width: 100%; max-width: 560px; border-radius: 14px; box-shadow: 0 20px 40px rgba(0,0,0,.08); padding: 2rem; }
+    h1 { margin: 0 0 .5rem; font-size: 1.5rem; }
+    .tagline { margin: 0 0 1.5rem; color: #4a5568; font-size: .95rem; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: .75rem 0; border-bottom: 1px solid #e2e8f0; font-size: .92rem; }
+    .meta { margin-top: 1rem; color: #64748b; font-size: .85rem; }
+    a { color: #0b5fff; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Team Directory</h1>
+      <p class="tagline">Primary contacts for workflow automation and rule operations.</p>
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Role</th><th>Email</th></tr>
+        </thead>
+        <tbody>
+          {% for member in team_members %}
+          <tr>
+            <td>{{ member.name }}</td>
+            <td>{{ member.role }}</td>
+            <td>{{ member.email }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <p class="meta"><a href="/">Back to sign in</a></p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+    container_name: protopilot-web
+    environment:
+      - FLASK_SECRET=protopilot-local-secret
+      - DB_PATH=/tmp/protopilot.db
+    ports:
+      - "8081:8080"
+    depends_on:
+      - grpc-api
+    volumes:
+      - ./flags/user.txt:/home/app/user.txt:ro
+
+  grpc-api:
+    build:
+      context: .
+      dockerfile: grpc-api/Dockerfile
+    container_name: protopilot-grpc-api
+    environment:
+      - PORT=50051
+      - ENABLE_REFLECTION=true
+    ports:
+      - "50051:50051"
+    volumes:
+      - ./flags/root.txt:/root/root.txt:ro

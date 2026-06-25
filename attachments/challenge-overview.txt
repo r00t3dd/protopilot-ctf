@@ -1,0 +1,9 @@
+ProtoPilot gRPC Exploit Chain (Portal Attachment)
+
+Start URL: http://<challenge-host>:8081
+Goal: Recover the canonical SPIrit flag from the challenge environment.
+
+Rules:
+- Attack only the provided challenge target.
+- Do not target external infrastructure.
+- Do not attempt host escape or destructive activity.

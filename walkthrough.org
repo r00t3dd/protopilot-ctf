@@ -1,0 +1,4 @@
+#+TITLE: ProtoPilot Maintainer Note
+#+AUTHOR: CTF Operator Notes
+
+Detailed solve instructions were moved to private_solutions/solution.md for SPIrit submission compliance.

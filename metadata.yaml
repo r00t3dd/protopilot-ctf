@@ -1,0 +1,55 @@
+title: "ProtoPilot gRPC Exploit Chain"
+author: "Challenge Author (NetSPI)"
+category: "Web"
+difficulty: "Medium"
+points: 500
+
+description: "Pivot from a vulnerable login flow into an internal gRPC rule service and recover the canonical flag."
+long_description: |
+  ProtoPilot is an internal workflow automation portal that is migrating rule validation to gRPC.
+  Your objective is to assess the application and recover the canonical SPIrit flag from the challenge environment.
+
+  Player handout: `attachments/challenge-overview.txt`
+
+  Constraints:
+  - Attack only this challenge instance.
+  - Keep activity inside the provided containerized environment.
+  - Do not attempt host escape or external-network targeting.
+
+  Start at the web app and follow the available clues through the service chain.
+ports: [8081, 50051]
+flag: "SPIRIT{protopilot_root_eval_escape_91bd}"
+attachments:
+  - filename: challenge-overview.txt
+    description: "Portal-safe challenge overview and start point."
+hints:
+  - "A team-facing page provides useful identity context for authentication testing."
+  - "Client-side resources reference an internal migration path."
+  - "Server-side authorization decisions can depend on metadata, not only session state."
+dependencies:
+  - docker
+  - docker compose
+  - grpcurl (optional for manual solving)
+  - port: 8081
+  - port: 50051
+
+external_urls: "NA"
+techniques: "SQL injection, Service discovery, gRPC metadata spoofing, Python sandbox escape"
+notes_for_admins: |
+  Deployment:
+  - docker compose up --build -d
+
+  Reset:
+  - ./deploy/reset.sh
+
+  Internal verification:
+  - python3 private_solutions/solve_dast.py --base-url http://localhost:8081 --grpc-host localhost --grpc-port 50051
+
+  Security posture:
+  - Challenge is intentionally vulnerable and must remain local-only.
+  - No host escape, external targeting, or destructive payloads are required.
+
+  Packaging:
+  - Keep private_solutions/solution.md internal.
+  - Publish only approved files from attachments/.
+github_url: "https://github.com/netspi/spirit-ctf-protopilot/"

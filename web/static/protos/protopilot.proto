@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package protopilot;
+
+service WorkflowService {
+  rpc ListWorkflows(ListWorkflowsRequest) returns (ListWorkflowsResponse);
+}
+
+service AdminService {
+  rpc TestRule(TestRuleRequest) returns (TestRuleResponse);
+}
+
+message ListWorkflowsRequest {}
+
+message Workflow {
+  int32 id = 1;
+  string name = 2;
+  string owner = 3;
+  string status = 4;
+}
+
+message ListWorkflowsResponse {
+  repeated Workflow workflows = 1;
+}
+
+message TestRuleRequest {
+  string expression = 1;
+}
+
+message TestRuleResponse {
+  string result = 1;
+}
