@@ -26,10 +26,49 @@ This challenge simulates a realistic exploit chain across auth, service discover
 1. From the project root, run:
 
 ```bash
-docker compose up --build -d
+make up
 ```
 
 1. Open <http://localhost:8081>.
+
+## Lifecycle Commands
+
+This repository includes a top-level Makefile to manage build, runtime, diagnostics, and reset operations.
+
+```bash
+make help
+```
+
+Common commands:
+
+- `make build` - build all images
+- `make up` - start stack in detached mode (builds first)
+- `make down` - stop and remove containers
+- `make restart` - restart the stack
+- `make logs` - stream all service logs
+- `make status` - show compose status and endpoint reachability checks
+
+Destructive commands:
+
+- `make reset` - runs `deploy/reset.sh` after confirmation (removes volumes)
+- `make clean-all` - removes containers, volumes, and local images after confirmation
+
+Direct Compose usage remains valid:
+
+```bash
+docker compose up --build -d
+```
+
+## Operator Verification Commands
+
+The following targets are intended for challenge operators and local validation workflows:
+
+- `make verify-web`
+- `make verify-grpc`
+- `make verify-proto`
+- `make verify-sqli`
+- `make verify-solve`
+- `make verify-flags`
 
 ## Participant Rules
 
